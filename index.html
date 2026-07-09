@@ -128,70 +128,53 @@
     margin: 0 0 36px;
   }
 
-  /* ---------- Product grid ---------- */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-  }
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 22px;
-    text-align: left;
-    cursor: pointer;
-    transition: box-shadow .15s, transform .15s, border-color .15s;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .card:hover {
-    box-shadow: 0 8px 24px rgba(11,37,69,.10);
-    transform: translateY(-2px);
-    border-color: var(--blue);
-  }
-  .card-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 8px;
-    background: #eaf1ff;
-    color: var(--blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-  }
-  .card-category {
-    font-size: 11.5px;
-    font-weight: 700;
+  /* ---------- Product list (cptrade-style: category heading + flat rows) ---------- */
+  .prod-category { margin-bottom: 30px; }
+  .prod-category:last-child { margin-bottom: 0; }
+  .prod-category-title {
+    font-size: 13px;
+    font-weight: 800;
     letter-spacing: .5px;
     text-transform: uppercase;
     color: var(--orange);
+    margin: 0 0 4px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--navy);
   }
-  .card-name {
-    font-size: 16.5px;
-    font-weight: 700;
+  .prod-rows {
+    list-style: none;
     margin: 0;
+    padding: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
   }
-  .card-desc {
-    font-size: 13.5px;
-    color: var(--muted);
-    line-height: 1.5;
-    flex-grow: 1;
+  .prod-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background .12s;
   }
-  .card-btn {
-    align-self: flex-start;
-    background: var(--navy);
-    color: #fff;
-    border: none;
-    padding: 9px 16px;
-    border-radius: 6px;
+  .prod-rows li:last-child .prod-row { border-bottom: none; }
+  .prod-row:hover { background: #eef4ff; }
+  .prod-row-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .prod-row-quote {
+    flex-shrink: 0;
     font-size: 13px;
     font-weight: 700;
-    cursor: pointer;
+    color: var(--blue);
+    white-space: nowrap;
   }
-  .card:hover .card-btn { background: var(--blue); }
+  .prod-row:hover .prod-row-quote { color: var(--orange); }
 
   /* ---------- About ---------- */
   .about-box {
@@ -360,7 +343,7 @@
 <section class="section" id="products">
   <h2 class="section-title" data-i18n="products.title">Asortyment</h2>
   <p class="section-sub" data-i18n="products.sub">Wybrane kategorie z naszej oferty. Kliknij produkt, aby wysłać zapytanie ofertowe.</p>
-  <div class="grid" id="product-grid"></div>
+  <div id="product-list"></div>
 </section>
 
 <section class="section" id="about">
@@ -497,78 +480,72 @@
 
   const products = [
     {
-      icon: "⚙",
       category: { pl: "Czujniki", en: "Sensors" },
-      name: { pl: "Telemecanique Sensors XS1 — Czujnik indukcyjny", en: "Telemecanique Sensors XS1 — Inductive Proximity Sensor" },
-      desc: {
-        pl: "Kompaktowy czujnik indukcyjny do zastosowań przemysłowych, obudowa M12, zasięg 2–8 mm.",
-        en: "Compact inductive proximity sensor for industrial use, M12 housing, 2–8 mm sensing range."
-      }
+      name: { pl: "Telemecanique Sensors XS1 — Czujnik indukcyjny", en: "Telemecanique Sensors XS1 — Inductive Proximity Sensor" }
     },
     {
-      icon: "👁",
       category: { pl: "Czujniki", en: "Sensors" },
-      name: { pl: "Telemecanique Sensors XUB — Czujnik fotoelektryczny", en: "Telemecanique Sensors XUB — Photoelectric Sensor" },
-      desc: {
-        pl: "Czujnik fotoelektryczny miniaturowy, tryb refleksyjny i barierowy, wyjście PNP/NPN.",
-        en: "Miniature photoelectric sensor, retro-reflective and through-beam modes, PNP/NPN output."
-      }
+      name: { pl: "Telemecanique Sensors XUB — Czujnik fotoelektryczny", en: "Telemecanique Sensors XUB — Photoelectric Sensor" }
     },
     {
-      icon: "🖥",
       category: { pl: "Automatyka", en: "Automation" },
-      name: { pl: "Modicon M221 — Moduł sterownika PLC", en: "Modicon M221 — PLC Controller Module" },
-      desc: {
-        pl: "Kompaktowy sterownik logiczny do małych i średnich aplikacji automatyki przemysłowej.",
-        en: "Compact logic controller for small and medium industrial automation applications."
-      }
+      name: { pl: "Modicon M221 — Moduł sterownika PLC", en: "Modicon M221 — PLC Controller Module" }
     },
     {
-      icon: "🔌",
       category: { pl: "Automatyka", en: "Automation" },
-      name: { pl: "SIMATIC S7-1200 — Moduł CPU", en: "SIMATIC S7-1200 — CPU Module" },
-      desc: {
-        pl: "Jednostka centralna do systemów sterowania, wbudowane wejścia/wyjścia cyfrowe i analogowe.",
-        en: "Central processing unit for control systems, built-in digital and analog I/O."
-      }
+      name: { pl: "SIMATIC S7-1200 — Moduł CPU", en: "SIMATIC S7-1200 — CPU Module" }
     },
     {
-      icon: "🛰",
       category: { pl: "Sieci przemysłowe", en: "Industrial Networking" },
-      name: { pl: "PB-Q-One — Repeater Profibus", en: "PB-Q-One — Profibus Repeater" },
-      desc: {
-        pl: "Repeater segmentowy dla sieci Profibus, poprawia zasięg i stabilność transmisji.",
-        en: "Segment repeater for Profibus networks, extends range and improves transmission stability."
-      }
+      name: { pl: "PB-Q-One — Repeater Profibus", en: "PB-Q-One — Profibus Repeater" }
     },
     {
-      icon: "🌐",
       category: { pl: "Sieci przemysłowe", en: "Industrial Networking" },
-      name: { pl: "Switch przemysłowy PROFINET", en: "PROFINET Industrial Switch" },
-      desc: {
-        pl: "Zarządzalny switch przemysłowy do sieci PROFINET, obudowa DIN-rail.",
-        en: "Managed industrial switch for PROFINET networks, DIN-rail mountable."
-      }
+      name: { pl: "Switch przemysłowy PROFINET", en: "PROFINET Industrial Switch" }
     }
   ];
 
   let currentLang = "pl";
 
   function renderProducts() {
-    const grid = document.getElementById("product-grid");
-    grid.innerHTML = "";
-    products.forEach((p, idx) => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.onclick = () => openModal(p);
-      card.innerHTML = `
-        <div class="card-icon">${p.icon}</div>
-        <div class="card-category">${p.category[currentLang]}</div>
-        <p class="card-name">${p.name[currentLang]}</p>
-        <p class="card-desc">${p.desc[currentLang]}</p>
-        <button type="button" class="card-btn">${i18n[currentLang]["products.quoteBtn"]}</button>
-      `;
-      grid.appendChild(card);
+    const list = document.getElementById("product-list");
+    list.innerHTML = "";
+
+    const categories = [];
+    products.forEach(p => {
+      const catName = p.category[currentLang];
+      let group = categories.find(c => c.name === catName);
+      if (!group) {
+        group = { name: catName, items: [] };
+        categories.push(group);
+      }
+      group.items.push(p);
+    });
+
+    categories.forEach(group => {
+      const block = document.createElement("div");
+      block.className = "prod-category";
+
+      const title = document.createElement("h3");
+      title.className = "prod-category-title";
+      title.textContent = group.name;
+      block.appendChild(title);
+
+      const ul = document.createElement("ul");
+      ul.className = "prod-rows";
+      group.items.forEach(p => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <div class="prod-row">
+            <span class="prod-row-name">${p.name[currentLang]}</span>
+            <span class="prod-row-quote">${i18n[currentLang]["products.quoteBtn"]} ›</span>
+          </div>
+        `;
+        li.querySelector(".prod-row").onclick = () => openModal(p);
+        ul.appendChild(li);
+      });
+      block.appendChild(ul);
+      list.appendChild(block);
     });
   }
 
