@@ -20,7 +20,7 @@ Ship a single static page that positions Reon as a Europe-focused industrial sou
 
 ### In scope
 
-- One self-contained [index.html](index.html) with inline CSS and JS, deployable directly to GitHub Pages.
+- A static [index.html](index.html) with sibling [style.css](style.css) and [script.js](script.js), deployable directly to GitHub Pages (no build step, no external CDN dependencies).
 - Hero and positioning copy explaining Reon's B2B sourcing model.
 - Manufacturer-led catalog inspired by FAMAGA, with alphabetical grouping and lightweight filtering/search.
 - Sample manufacturer entries with category, short summary, and example product lines.
@@ -65,11 +65,11 @@ This model is enough to support fast scanning and contextual inquiries without p
 
 ## 7. Technical approach
 
-- Plain HTML, CSS, and JavaScript in a single file.
-- Inline data array for manufacturer entries so the catalog can be expanded by editing data rather than markup.
-- Bilingual strings managed through a simple in-page translation object.
+- Plain HTML, CSS, and JavaScript: [index.html](index.html) (markup) + [style.css](style.css) (styles) + [script.js](script.js) (behavior/data). No build step, no framework, no external CDN dependencies.
+- Data array for manufacturer entries lives in `script.js` so the catalog can be expanded by editing data rather than markup.
+- Bilingual strings managed through a simple translation object in `script.js`.
 - Modal form remains UI-only in this phase.
-- Deployment target: GitHub Pages using the repo-root [index.html](index.html).
+- Deployment target: GitHub Pages, serving `index.html`, `style.css`, and `script.js` from the repo root.
 
 ## 8. Success criteria
 
