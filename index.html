@@ -6,153 +6,183 @@
 <title>Reon — Industrial Sourcing Partner</title>
 <style>
   :root {
-    --navy: #0b2545;
-    --navy-light: #13315c;
-    --blue: #1f6feb;
-    --orange: #ff7a1a;
-    --bg: #f5f7fa;
-    --card-bg: #ffffff;
-    --text: #14213d;
-    --muted: #5b6b83;
-    --border: #e2e6ec;
+    --navy: #101b2e;
+    --navy2: #16294a;
+    --orange: #e8621a;
+    --cream: #f6f5f2;
+    --ink: #222b3a;
+    --muted: #5a6478;
+    --border: #ecece9;
   }
   * { box-sizing: border-box; }
-  html, body {
+  html { scroll-behavior: smooth; }
+  body {
     margin: 0;
-    padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    scroll-behavior: smooth;
+    color: var(--ink);
+    background: #fff;
   }
   a { color: inherit; }
+  button, input, textarea { font-family: inherit; }
   img { max-width: 100%; }
 
   /* ---------- Header ---------- */
   header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
     background: var(--navy);
     color: #fff;
     position: sticky;
     top: 0;
     z-index: 50;
   }
-  .header-inner {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 14px 24px;
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark {
+    width: 26px;
+    height: 26px;
+    background: var(--orange);
+    border-radius: 3px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-  .logo {
-    font-size: 22px;
+    justify-content: center;
     font-weight: 800;
-    letter-spacing: 2px;
-    color: #fff;
-    text-decoration: none;
+    font-size: 13px;
+    color: var(--navy);
   }
-  .logo span { color: var(--orange); }
-  nav { display: flex; align-items: center; gap: 26px; }
+  .logo-text { font-weight: 800; font-size: 20px; letter-spacing: .06em; color: #fff; }
+  nav { display: flex; align-items: center; gap: 32px; }
   nav a.navlink {
-    color: #cdd7e6;
+    color: #cfd6e2;
     text-decoration: none;
-    font-size: 14.5px;
+    font-size: 14px;
     font-weight: 500;
   }
   nav a.navlink:hover { color: #fff; }
-  .lang-toggle {
-    display: flex;
-    border: 1px solid #385a86;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .lang-toggle button {
+  #lang-toggle {
     background: transparent;
-    border: none;
-    color: #cdd7e6;
+    border: 1px solid #3a4a63;
+    color: #fff;
+    border-radius: 4px;
     padding: 6px 12px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
+    letter-spacing: .04em;
     cursor: pointer;
   }
-  .lang-toggle button.active {
-    background: var(--orange);
+  #lang-toggle:hover { border-color: #5a6c88; }
+  .nav-toggle-btn {
+    display: none;
+    background: transparent;
+    border: 1px solid #3a4a63;
     color: #fff;
+    border-radius: 4px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 15px;
   }
 
   /* ---------- Hero ---------- */
   .hero {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #0e2f5c 100%);
+    background: var(--navy);
     color: #fff;
-    padding: 72px 24px 88px;
-    text-align: center;
+    padding: 88px 48px 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 420px;
+    height: 420px;
+    border: 2px solid rgba(255,255,255,.06);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: 40px;
+    top: 60px;
+    width: 260px;
+    height: 260px;
+    border: 2px solid rgba(255,255,255,.08);
+    border-radius: 50%;
+  }
+  .hero-inner { max-width: 680px; position: relative; }
+  .hero-kicker {
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
   }
   .hero h1 {
-    font-size: 36px;
-    margin: 0 0 16px;
+    font-size: 42px;
+    line-height: 1.15;
     font-weight: 800;
+    margin: 0 0 20px;
+    letter-spacing: -.01em;
   }
   .hero p {
-    max-width: 660px;
-    margin: 0 auto 28px;
-    color: #cdd7e6;
-    font-size: 16.5px;
+    font-size: 17px;
     line-height: 1.6;
+    color: #c3cbda;
+    margin: 0 0 32px;
+    max-width: 560px;
   }
-  .hero-cta {
-    display: inline-block;
-    background: var(--orange);
-    color: #fff;
-    padding: 13px 28px;
-    border-radius: 6px;
-    text-decoration: none;
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    padding: 14px 26px;
+    border-radius: 4px;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
   }
-  .hero-cta:hover { background: #e56a10; }
+  .btn-primary { background: var(--orange); color: #fff; }
+  .btn-primary:hover { background: #cf5613; }
+  .btn-outline { background: transparent; color: #fff; border: 1px solid #3a4a63; }
+  .btn-outline:hover { border-color: #5a6c88; }
 
   /* ---------- Sections ---------- */
   .section {
-    max-width: 1180px;
+    max-width: 1160px;
     margin: 0 auto;
-    padding: 64px 24px;
+    padding: 72px 48px;
   }
   .section-title {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 800;
+    color: var(--navy);
     margin: 0 0 6px;
   }
   .section-sub {
     color: var(--muted);
     font-size: 15px;
-    margin: 0 0 32px;
+    margin: 0 0 36px;
   }
 
   /* ---------- Catalog controls (search + A-Z) ---------- */
-  .catalog-controls {
-    margin-bottom: 28px;
-  }
+  .catalog-controls { margin-bottom: 28px; }
   .catalog-search {
     width: 100%;
     max-width: 420px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    border: 1px solid #dcdfe4;
+    border-radius: 4px;
     padding: 11px 14px;
     font-size: 14.5px;
-    font-family: inherit;
-    color: var(--text);
+    color: var(--ink);
     background: #fff;
     margin-bottom: 16px;
   }
-  .catalog-search:focus {
-    outline: none;
-    border-color: var(--blue);
-  }
-  .az-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
+  .catalog-search:focus { outline: none; border-color: var(--orange); }
+  .az-bar { display: flex; flex-wrap: wrap; gap: 4px; }
   .az-letter {
     width: 28px;
     height: 28px;
@@ -161,81 +191,66 @@
     justify-content: center;
     font-size: 12.5px;
     font-weight: 700;
-    border-radius: 5px;
-    color: var(--muted);
+    border-radius: 4px;
+    color: #b7bcc6;
     background: transparent;
     border: none;
     cursor: default;
     text-decoration: none;
   }
-  .az-letter.active {
-    color: var(--navy);
-    background: #eaf1ff;
-    cursor: pointer;
-  }
+  .az-letter.active { color: var(--navy); background: var(--cream); cursor: pointer; }
   .az-letter.active:hover { background: var(--orange); color: #fff; }
 
   /* ---------- Manufacturer catalog list ---------- */
   .mfr-group { margin-bottom: 28px; }
   .mfr-group:last-child { margin-bottom: 0; }
   .mfr-group-letter {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 800;
-    letter-spacing: .5px;
+    letter-spacing: .04em;
     text-transform: uppercase;
-    color: var(--orange);
+    color: var(--navy);
     margin: 0 0 4px;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
     border-bottom: 2px solid var(--navy);
+    scroll-margin-top: 90px;
   }
-  .mfr-rows {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
+  .mfr-rows { list-style: none; margin: 0; padding: 0; }
   .mfr-row {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    padding: 16px 18px;
+    padding: 16px 6px;
     border-bottom: 1px solid var(--border);
     cursor: pointer;
-    transition: background .12s;
+    transition: background .15s, padding-left .15s;
   }
   .mfr-rows li:last-child .mfr-row { border-bottom: none; }
-  .mfr-row:hover { background: #eef4ff; }
+  .mfr-row:hover { background: var(--cream); padding-left: 16px; }
   .mfr-row-main { flex: 1; min-width: 0; }
   .mfr-name-line {
     display: flex;
     align-items: baseline;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
-  .mfr-name {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-  }
+  .mfr-name { font-size: 15.5px; font-weight: 700; color: var(--ink); }
   .mfr-category {
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: .4px;
-    color: var(--blue);
+    letter-spacing: .06em;
+    color: var(--orange);
   }
   .mfr-priority-tag {
     font-size: 10.5px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: .3px;
+    letter-spacing: .04em;
     color: #fff;
-    background: var(--orange);
+    background: var(--navy);
     padding: 2px 7px;
     border-radius: 4px;
   }
@@ -248,8 +263,8 @@
   .mfr-lines { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag {
     font-size: 11.5px;
-    color: var(--navy);
-    background: #eef2f8;
+    color: var(--muted);
+    background: var(--cream);
     border: 1px solid var(--border);
     padding: 3px 8px;
     border-radius: 4px;
@@ -258,11 +273,10 @@
     flex-shrink: 0;
     font-size: 13px;
     font-weight: 700;
-    color: var(--blue);
+    color: var(--orange);
     white-space: nowrap;
     padding-top: 2px;
   }
-  .mfr-row:hover .mfr-cta { color: var(--orange); }
   .catalog-empty {
     display: none;
     text-align: center;
@@ -279,10 +293,9 @@
     gap: 20px;
   }
   .step {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
+    background: var(--cream);
+    border-radius: 6px;
+    padding: 26px;
   }
   .step-num {
     width: 32px;
@@ -297,48 +310,37 @@
     font-size: 14px;
     margin-bottom: 14px;
   }
-  .step h3 {
-    font-size: 15.5px;
-    margin: 0 0 6px;
-  }
-  .step p {
-    font-size: 13.5px;
-    color: var(--muted);
-    line-height: 1.5;
-    margin: 0;
-  }
+  .step h3 { font-size: 15.5px; color: var(--navy); margin: 0 0 6px; }
+  .step p { font-size: 13.5px; color: var(--muted); line-height: 1.5; margin: 0; }
 
   /* ---------- About ---------- */
-  .about-box {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 32px;
-    line-height: 1.7;
-    color: var(--muted);
-    font-size: 15px;
-  }
-  .about-box strong { color: var(--text); }
+  .about-section { background: var(--cream); }
+  .about-box { max-width: 760px; line-height: 1.7; color: #3d4658; font-size: 16px; }
+  .about-box strong { color: var(--navy); }
 
   /* ---------- Contact section ---------- */
-  #contact .section-sub { margin-bottom: 20px; }
-  .contact-direct {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 28px;
-    font-size: 14.5px;
-    color: var(--muted);
+  #contact .section-sub { max-width: 560px; }
+  .contact-grid { display: flex; gap: 56px; flex-wrap: wrap; }
+  .contact-item-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #8b93a3;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 6px;
   }
-  .contact-direct b { color: var(--text); }
+  .contact-item-value { font-size: 16px; font-weight: 700; color: var(--navy); }
 
   /* ---------- Footer ---------- */
   footer {
     background: var(--navy);
-    color: #9fb0c8;
-    text-align: center;
-    padding: 26px 24px;
+    color: #8b93a3;
+    padding: 26px 48px;
+    display: flex;
+    justify-content: space-between;
     font-size: 13px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   /* ---------- Modal ---------- */
@@ -346,21 +348,21 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(11,37,69,.55);
+    background: rgba(10,16,28,.55);
     z-index: 100;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 20px;
+    padding: 60px 20px;
+    overflow-y: auto;
   }
   .modal-overlay.open { display: flex; }
   .modal {
     background: #fff;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 480px;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 28px;
+    border-radius: 6px;
+    width: 440px;
+    max-width: 100%;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.3);
     position: relative;
   }
   .modal-close {
@@ -374,118 +376,119 @@
     color: var(--muted);
     cursor: pointer;
   }
-  .modal-close:hover { color: var(--text); }
-  .modal-title {
-    font-size: 20px;
-    font-weight: 800;
-    margin: 0 0 4px;
-  }
-  .modal-mfr-name {
-    color: var(--blue);
-    font-weight: 700;
-    font-size: 14px;
-    margin: 0 0 10px;
-  }
+  .modal-close:hover { color: var(--ink); }
+  .modal-title { font-size: 19px; font-weight: 800; color: var(--navy); margin: 0 0 4px; }
+  .modal-mfr-name { color: var(--orange); font-weight: 700; font-size: 13px; margin: 0 0 16px; }
   .modal-context {
-    background: #f5f7fa;
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    background: var(--cream);
+    border-radius: 4px;
     padding: 14px 16px;
     margin-bottom: 20px;
   }
-  .modal-context p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.5;
-    margin: 0 0 8px;
-  }
+  .modal-context p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0 0 8px; }
   .modal-context .mfr-lines { gap: 5px; }
-  .form-row { margin-bottom: 14px; }
-  .form-row label {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 5px;
-    color: var(--text);
-  }
+  .modal-context .tag { background: #fff; }
+  .form-row { margin-bottom: 12px; }
+  .form-row label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: var(--ink); }
   .form-row input,
   .form-row textarea {
     width: 100%;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 12px;
+    border: 1px solid #dcdfe4;
+    border-radius: 4px;
+    padding: 11px 12px;
     font-size: 14px;
-    font-family: inherit;
-    color: var(--text);
-    background: #fafbfc;
-  }
-  .form-row input:focus,
-  .form-row textarea:focus {
-    outline: none;
-    border-color: var(--blue);
+    color: var(--ink);
     background: #fff;
   }
+  .form-row input:focus,
+  .form-row textarea:focus { outline: none; border-color: var(--orange); }
   .form-row textarea { resize: vertical; min-height: 80px; }
-  .form-submit {
-    width: 100%;
-    background: var(--orange);
-    color: #fff;
-    border: none;
-    padding: 12px;
-    border-radius: 6px;
-    font-size: 14.5px;
+  .modal-form-actions { display: flex; gap: 10px; margin-top: 6px; }
+  .modal-form-actions .btn-primary { flex: 1; }
+  .btn-cancel {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid #dcdfe4;
+    padding: 12px 18px;
+    border-radius: 4px;
     font-weight: 700;
+    font-size: 14px;
     cursor: pointer;
   }
-  .form-submit:hover { background: #e56a10; }
-  .form-note {
-    font-size: 11.5px;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 10px;
-  }
-  .form-success {
-    display: none;
-    text-align: center;
-    padding: 20px 0;
-  }
+  .btn-cancel:hover { border-color: #b9bfc9; }
+  .form-note { font-size: 11.5px; color: var(--muted); text-align: center; margin-top: 12px; }
+  .form-success { display: none; text-align: center; padding: 10px 0; }
   .form-success.show { display: block; }
-  .form-success .icon { font-size: 40px; margin-bottom: 12px; }
-  .form-success h3 { margin: 0 0 8px; }
-  .form-success p { color: var(--muted); font-size: 14px; }
+  .success-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e9f6ee;
+    color: #1f8a44;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin: 0 auto 18px;
+  }
+  .form-success h3 { color: var(--navy); margin: 0 0 8px; }
+  .form-success p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
 
-  @media (max-width: 600px) {
-    nav { gap: 12px; }
-    nav a.navlink { display: none; }
-    .hero h1 { font-size: 27px; }
+  @media (max-width: 860px) {
+    header { padding: 16px 20px; }
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: min(280px, 80vw);
+      background: var(--navy2);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 80px 28px 28px;
+      gap: 24px;
+      transition: right .25s ease;
+      z-index: 49;
+    }
+    nav.open { right: 0; }
+    .nav-toggle-btn { display: block; }
     .hero { padding: 56px 20px 64px; }
-    .section { padding: 48px 18px; }
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15.5px; }
+    .section { padding: 48px 20px; }
     .mfr-row { flex-direction: column; }
+    footer { padding: 22px 20px; flex-direction: column; text-align: center; }
+    .contact-grid { gap: 28px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="header-inner">
-    <a href="#" class="logo">RE<span>ON</span></a>
-    <nav>
-      <a class="navlink" href="#catalog" data-i18n="nav.catalog">Katalog</a>
-      <a class="navlink" href="#how-it-works" data-i18n="nav.how">Jak to działa</a>
-      <a class="navlink" href="#about" data-i18n="nav.about">O firmie</a>
-      <a class="navlink" href="#contact" data-i18n="nav.contact">Kontakt</a>
-      <div class="lang-toggle">
-        <button type="button" id="lang-pl" class="active" onclick="setLang('pl')">PL</button>
-        <button type="button" id="lang-en" onclick="setLang('en')">EN</button>
-      </div>
-    </nav>
-  </div>
+  <a href="#" class="logo">
+    <div class="logo-mark">R</div>
+    <div class="logo-text">REON</div>
+  </a>
+  <nav id="main-nav">
+    <a class="navlink" href="#catalog" data-i18n="nav.catalog">Katalog</a>
+    <a class="navlink" href="#how-it-works" data-i18n="nav.how">Jak to działa</a>
+    <a class="navlink" href="#about" data-i18n="nav.about">O firmie</a>
+    <a class="navlink" href="#contact" data-i18n="nav.contact">Kontakt</a>
+    <button type="button" id="lang-toggle" onclick="toggleLang()">PL / EN</button>
+  </nav>
+  <button type="button" class="nav-toggle-btn" id="nav-toggle-btn" aria-label="Menu" onclick="toggleNav()">☰</button>
 </header>
 
 <section class="hero">
-  <h1 data-i18n="hero.title">Twój partner sourcingowy w automatyce przemysłowej</h1>
-  <p data-i18n="hero.sub">Reon reprezentuje wybrane marki z branży automatyki, czujników i sieci przemysłowych oraz sourcuje komponenty na zamówienie w całej Europie. Bez sklepu online — każde zapytanie kończy się indywidualną wyceną.</p>
-  <a href="#catalog" class="hero-cta" data-i18n="hero.cta">Przeglądaj katalog</a>
+  <div class="hero-inner">
+    <div class="hero-kicker" data-i18n="hero.kicker">Partner sourcingowy w automatyce przemysłowej</div>
+    <h1 data-i18n="hero.title">Twój partner sourcingowy w automatyce przemysłowej</h1>
+    <p data-i18n="hero.sub">Reon reprezentuje wybrane marki z branży automatyki, czujników i sieci przemysłowych oraz sourcuje komponenty na zamówienie w całej Europie. Bez sklepu online — każde zapytanie kończy się indywidualną wyceną.</p>
+    <div class="hero-ctas">
+      <a href="#catalog" class="btn btn-primary" data-i18n="hero.cta">Przeglądaj katalog</a>
+      <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Skontaktuj się</a>
+    </div>
+  </div>
 </section>
 
 <section class="section" id="catalog">
@@ -523,7 +526,7 @@
   </div>
 </section>
 
-<section class="section" id="about">
+<section class="section about-section" id="about">
   <h2 class="section-title" data-i18n="about.title">O firmie</h2>
   <p class="section-sub" data-i18n="about.sub">Kim jesteśmy i jak pracujemy</p>
   <div class="about-box" data-i18n="about.body">
@@ -537,13 +540,20 @@
 <section class="section" id="contact">
   <h2 class="section-title" data-i18n="contact.title">Kontakt</h2>
   <p class="section-sub" data-i18n="contact.sub">Masz pytanie ogólne? Napisz do nas bezpośrednio, albo wybierz producenta powyżej, aby zapytać o konkretną ofertę.</p>
-  <div class="contact-direct">
-    <b data-i18n="contact.emailLabel">E-mail:</b> contact@reon.example<br>
-    <b data-i18n="contact.regionLabel">Obszar działania:</b> <span data-i18n="contact.region">Europa</span>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-item-label" data-i18n="contact.emailLabel">E-mail</div>
+      <div class="contact-item-value">contact@reon.example</div>
+    </div>
+    <div>
+      <div class="contact-item-label" data-i18n="contact.regionLabel">Obszar działania</div>
+      <div class="contact-item-value" data-i18n="contact.region">Europa</div>
+    </div>
   </div>
 </section>
 
 <footer>
+  <span>REON</span>
   <span data-i18n="footer.text">© 2026 Reon. Wersja demonstracyjna — statyczna prezentacja, faza 1.</span>
 </footer>
 
@@ -582,13 +592,16 @@
           <label data-i18n="modal.message">Wiadomość</label>
           <textarea data-i18n-placeholder="modal.messagePlaceholder" placeholder="Ilość, termin, dodatkowe wymagania..."></textarea>
         </div>
-        <button type="submit" class="form-submit" data-i18n="modal.submit">Wyślij zapytanie</button>
+        <div class="modal-form-actions">
+          <button type="submit" class="btn btn-primary" data-i18n="modal.submit">Wyślij zapytanie</button>
+          <button type="button" class="btn-cancel" onclick="closeModal()" data-i18n="modal.cancel">Anuluj</button>
+        </div>
         <p class="form-note" data-i18n="modal.note">Formularz demonstracyjny — wysyłka nie jest jeszcze podłączona.</p>
       </form>
     </div>
 
     <div class="form-success" id="form-success">
-      <div class="icon">✓</div>
+      <div class="success-icon">✓</div>
       <h3 data-i18n="modal.successTitle">Dziękujemy!</h3>
       <p data-i18n="modal.successBody">To wersja demonstracyjna — zapytanie nie zostało wysłane. Funkcja wysyłki zostanie dodana wkrótce.</p>
     </div>
@@ -602,9 +615,11 @@
       "nav.how": "Jak to działa",
       "nav.about": "O firmie",
       "nav.contact": "Kontakt",
+      "hero.kicker": "Partner sourcingowy w automatyce przemysłowej",
       "hero.title": "Twój partner sourcingowy w automatyce przemysłowej",
       "hero.sub": "Reon reprezentuje wybrane marki z branży automatyki, czujników i sieci przemysłowych oraz sourcuje komponenty na zamówienie w całej Europie. Bez sklepu online — każde zapytanie kończy się indywidualną wyceną.",
       "hero.cta": "Przeglądaj katalog",
+      "hero.cta2": "Skontaktuj się",
       "catalog.title": "Katalog producentów",
       "catalog.sub": "Przeglądaj reprezentowane marki i wybierz tę, o którą chcesz zapytać.",
       "catalog.searchPlaceholder": "Szukaj producenta...",
@@ -623,8 +638,8 @@
       "about.body": "<strong>Reon</strong> to firma sourcingowa działająca na rynku europejskim, specjalizująca się w komponentach automatyki przemysłowej, czujnikach i sieciach przemysłowych. Współpracujemy z wybranymi producentami i dostawcami, aby zapewnić konkurencyjne ceny bez kompromisów jakościowych. Nie prowadzimy sprzedaży online — każde zapytanie trafia do indywidualnej wyceny przygotowanej pod potrzeby klienta.",
       "contact.title": "Kontakt",
       "contact.sub": "Masz pytanie ogólne? Napisz do nas bezpośrednio, albo wybierz producenta powyżej, aby zapytać o konkretną ofertę.",
-      "contact.emailLabel": "E-mail:",
-      "contact.regionLabel": "Obszar działania:",
+      "contact.emailLabel": "E-mail",
+      "contact.regionLabel": "Obszar działania",
       "contact.region": "Europa",
       "footer.text": "© 2026 Reon. Wersja demonstracyjna — statyczna prezentacja, faza 1.",
       "modal.title": "Zapytanie ofertowe",
@@ -635,6 +650,7 @@
       "modal.message": "Wiadomość",
       "modal.messagePlaceholder": "Ilość, termin, dodatkowe wymagania...",
       "modal.submit": "Wyślij zapytanie",
+      "modal.cancel": "Anuluj",
       "modal.note": "Formularz demonstracyjny — wysyłka nie jest jeszcze podłączona.",
       "modal.successTitle": "Dziękujemy!",
       "modal.successBody": "To wersja demonstracyjna — zapytanie nie zostało wysłane. Funkcja wysyłki zostanie dodana wkrótce."
@@ -644,9 +660,11 @@
       "nav.how": "How it works",
       "nav.about": "About",
       "nav.contact": "Contact",
+      "hero.kicker": "Industrial sourcing partner",
       "hero.title": "Your sourcing partner for industrial automation",
       "hero.sub": "Reon represents selected brands in automation, sensing and industrial networking, and sources components on request across Europe. No online store — every inquiry ends in a tailored quote.",
       "hero.cta": "Browse the catalog",
+      "hero.cta2": "Get in touch",
       "catalog.title": "Manufacturer catalog",
       "catalog.sub": "Browse represented brands and pick the one you'd like to ask about.",
       "catalog.searchPlaceholder": "Search manufacturers...",
@@ -665,8 +683,8 @@
       "about.body": "<strong>Reon</strong> is a sourcing company operating across the European market, specializing in industrial automation components, sensors and industrial networking. We work with selected manufacturers and suppliers to offer competitive pricing without compromising on quality. We don't run an online store — every inquiry results in a tailored quote for the customer's needs.",
       "contact.title": "Contact",
       "contact.sub": "General question? Reach out directly, or pick a manufacturer above to ask about a specific offer.",
-      "contact.emailLabel": "Email:",
-      "contact.regionLabel": "Coverage area:",
+      "contact.emailLabel": "Email",
+      "contact.regionLabel": "Coverage area",
       "contact.region": "Europe",
       "footer.text": "© 2026 Reon. Demo build — static presentation, phase 1.",
       "modal.title": "Quote request",
@@ -677,6 +695,7 @@
       "modal.message": "Message",
       "modal.messagePlaceholder": "Quantity, deadline, extra requirements...",
       "modal.submit": "Send request",
+      "modal.cancel": "Cancel",
       "modal.note": "Demo form — submission is not wired up yet.",
       "modal.successTitle": "Thank you!",
       "modal.successBody": "This is a demo build — your request was not actually sent. Submission will be enabled soon."
@@ -839,7 +858,7 @@
               <p class="mfr-summary">${m.summary[currentLang]}</p>
               <div class="mfr-lines">${m.lines.map(l => `<span class="tag">${l}</span>`).join("")}</div>
             </div>
-            <span class="mfr-cta">${i18n[currentLang]["catalog.quoteBtn"]} ›</span>
+            <span class="mfr-cta">${i18n[currentLang]["catalog.quoteBtn"]} →</span>
           </div>
         `;
         li.querySelector(".mfr-row").onclick = () => openModal(m);
@@ -850,20 +869,31 @@
     });
   }
 
-  function setLang(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang;
-    document.getElementById("lang-pl").classList.toggle("active", lang === "pl");
-    document.getElementById("lang-en").classList.toggle("active", lang === "en");
+  function applyLang() {
+    document.documentElement.lang = currentLang;
+    document.getElementById("lang-toggle").textContent =
+      currentLang === "pl" ? "PL / EN" : "EN / PL";
+    document.title = currentLang === "pl"
+      ? "Reon — Partner sourcingowy w automatyce przemysłowej"
+      : "Reon — Industrial Sourcing Partner";
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.getAttribute("data-i18n");
-      if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+      if (i18n[currentLang][key] !== undefined) el.innerHTML = i18n[currentLang][key];
     });
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
       const key = el.getAttribute("data-i18n-placeholder");
-      if (i18n[lang][key] !== undefined) el.setAttribute("placeholder", i18n[lang][key]);
+      if (i18n[currentLang][key] !== undefined) el.setAttribute("placeholder", i18n[currentLang][key]);
     });
     renderManufacturers(document.getElementById("catalog-search").value);
+  }
+
+  function toggleLang() {
+    currentLang = currentLang === "pl" ? "en" : "pl";
+    applyLang();
+  }
+
+  function toggleNav() {
+    document.getElementById("main-nav").classList.toggle("open");
   }
 
   function openModal(mfr) {
@@ -875,10 +905,12 @@
     document.getElementById("form-success").classList.remove("show");
     document.getElementById("inquiry-form").reset();
     document.getElementById("modal-overlay").classList.add("open");
+    document.body.style.overflow = "hidden";
   }
 
   function closeModal() {
     document.getElementById("modal-overlay").classList.remove("open");
+    document.body.style.overflow = "";
   }
 
   function submitInquiry(evt) {
@@ -897,9 +929,12 @@
   document.getElementById("catalog-search").addEventListener("input", (e) => {
     renderManufacturers(e.target.value);
   });
+  document.querySelectorAll("#main-nav a.navlink").forEach(a => {
+    a.addEventListener("click", () => document.getElementById("main-nav").classList.remove("open"));
+  });
 
   renderAzBar();
-  renderManufacturers("");
+  applyLang();
 </script>
 
 </body>
