@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reon — Industrial Components Wholesale</title>
+<style>
+  :root {
+    --navy: #0b2545;
+    --navy-light: #13315c;
+    --blue: #1f6feb;
+    --orange: #ff7a1a;
+    --bg: #f5f7fa;
+    --card-bg: #ffffff;
+    --text: #14213d;
+    --muted: #5b6b83;
+    --border: #e2e6ec;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    scroll-behavior: smooth;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; }
+
+  /* ---------- Header ---------- */
+  header {
+    background: var(--navy);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .header-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .logo span { color: var(--orange); }
+  nav { display: flex; align-items: center; gap: 28px; }
+  nav a.navlink {
+    color: #cdd7e6;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 500;
+  }
+  nav a.navlink:hover { color: #fff; }
+  .lang-toggle {
+    display: flex;
+    border: 1px solid #385a86;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    color: #cdd7e6;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .lang-toggle button.active {
+    background: var(--orange);
+    color: #fff;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #0e2f5c 100%);
+    color: #fff;
+    padding: 72px 24px 88px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 38px;
+    margin: 0 0 16px;
+    font-weight: 800;
+  }
+  .hero p {
+    max-width: 640px;
+    margin: 0 auto 28px;
+    color: #cdd7e6;
+    font-size: 16.5px;
+    line-height: 1.6;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    padding: 13px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .hero-cta:hover { background: #e56a10; }
+
+  /* ---------- Sections ---------- */
+  .section {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+  .section-title {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 0 6px;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 36px;
+  }
+
+  /* ---------- Product grid ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    text-align: left;
+    cursor: pointer;
+    transition: box-shadow .15s, transform .15s, border-color .15s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card:hover {
+    box-shadow: 0 8px 24px rgba(11,37,69,.10);
+    transform: translateY(-2px);
+    border-color: var(--blue);
+  }
+  .card-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    background: #eaf1ff;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  .card-category {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .card-name {
+    font-size: 16.5px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+  .card-btn {
+    align-self: flex-start;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .card:hover .card-btn { background: var(--blue); }
+
+  /* ---------- About ---------- */
+  .about-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px;
+    line-height: 1.7;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .about-box strong { color: var(--text); }
+
+  /* ---------- Contact section ---------- */
+  #contact .section-sub { margin-bottom: 20px; }
+  .contact-direct {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    font-size: 14.5px;
+    color: var(--muted);
+  }
+  .contact-direct b { color: var(--text); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--navy);
+    color: #9fb0c8;
+    text-align: center;
+    padding: 26px 24px;
+    font-size: 13px;
+  }
+
+  /* ---------- Modal ---------- */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(11,37,69,.55);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 460px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 28px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 0 4px;
+  }
+  .modal-product {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0 0 20px;
+  }
+  .form-row { margin-bottom: 14px; }
+  .form-row label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text);
+  }
+  .form-row input,
+  .form-row textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: #fafbfc;
+  }
+  .form-row input:focus,
+  .form-row textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    background: #fff;
+  }
+  .form-row textarea { resize: vertical; min-height: 80px; }
+  .form-submit {
+    width: 100%;
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .form-submit:hover { background: #e56a10; }
+  .form-note {
+    font-size: 11.5px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 10px;
+  }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+  }
+  .form-success.show { display: block; }
+  .form-success .icon { font-size: 40px; margin-bottom: 12px; }
+  .form-success h3 { margin: 0 0 8px; }
+  .form-success p { color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 600px) {
+    nav { gap: 14px; }
+    nav a.navlink { display: none; }
+    .hero h1 { font-size: 28px; }
+    .hero { padding: 56px 20px 64px; }
+    .section { padding: 48px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">RE<span>ON</span></a>
+    <nav>
+      <a class="navlink" href="#products" data-i18n="nav.products">Produkty</a>
+      <a class="navlink" href="#about" data-i18n="nav.about">O firmie</a>
+      <a class="navlink" href="#contact" data-i18n="nav.contact">Kontakt</a>
+      <div class="lang-toggle">
+        <button type="button" id="lang-pl" class="active" onclick="setLang('pl')">PL</button>
+        <button type="button" id="lang-en" onclick="setLang('en')">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 data-i18n="hero.title">Komponenty przemysłowe. Dostawa w całej Europie.</h1>
+  <p data-i18n="hero.sub">Reon dostarcza czujniki, komponenty automatyki i sieci przemysłowe firmom w całej Europie — konkurencyjne ceny, sprawdzone marki, wycena na zapytanie.</p>
+  <a href="#products" class="hero-cta" data-i18n="hero.cta">Zobacz produkty</a>
+</section>
+
+<section class="section" id="products">
+  <h2 class="section-title" data-i18n="products.title">Asortyment</h2>
+  <p class="section-sub" data-i18n="products.sub">Wybrane kategorie z naszej oferty. Kliknij produkt, aby wysłać zapytanie ofertowe.</p>
+  <div class="grid" id="product-grid"></div>
+</section>
+
+<section class="section" id="about">
+  <h2 class="section-title" data-i18n="about.title">O firmie</h2>
+  <p class="section-sub" data-i18n="about.sub">Kim jesteśmy i jak pracujemy</p>
+  <div class="about-box" data-i18n="about.body">
+    <strong>Reon</strong> to hurtownia komponentów przemysłowych i elektronicznych działająca na rynku europejskim.
+    Specjalizujemy się w czujnikach, modułach automatyki oraz sieciach przemysłowych, docierając do sprawdzonych
+    dostawców i oferując konkurencyjne ceny bez utraty jakości. Model działania opiera się na wycenie indywidualnej —
+    prześlij zapytanie o interesujący Cię produkt, a przygotujemy dla Ciebie ofertę.
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2 class="section-title" data-i18n="contact.title">Kontakt</h2>
+  <p class="section-sub" data-i18n="contact.sub">Masz pytanie ogólne? Napisz do nas bezpośrednio, albo wybierz produkt powyżej, aby zapytać o konkretną ofertę.</p>
+  <div class="contact-direct">
+    <b data-i18n="contact.emailLabel">E-mail:</b> contact@reon.example<br>
+    <b data-i18n="contact.regionLabel">Obszar działania:</b> <span data-i18n="contact.region">Europa</span>
+  </div>
+</section>
+
+<footer>
+  <span data-i18n="footer.text">© 2026 Reon. Wszystkie prawa zastrzeżone.</span>
+</footer>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+
+    <div id="modal-form-wrap">
+      <h3 class="modal-title" data-i18n="modal.title">Zapytanie ofertowe</h3>
+      <p class="modal-product" id="modal-product-name">—</p>
+      <form id="inquiry-form" onsubmit="return submitInquiry(event)">
+        <div class="form-row">
+          <label data-i18n="modal.name">Imię i nazwisko</label>
+          <input type="text" required>
+        </div>
+        <div class="form-row">
+          <label data-i18n="modal.company">Firma</label>
+          <input type="text">
+        </div>
+        <div class="form-row">
+          <label data-i18n="modal.email">E-mail</label>
+          <input type="email" required>
+        </div>
+        <div class="form-row">
+          <label data-i18n="modal.phone">Telefon</label>
+          <input type="tel">
+        </div>
+        <div class="form-row">
+          <label data-i18n="modal.message">Wiadomość</label>
+          <textarea data-i18n-placeholder="modal.messagePlaceholder" placeholder="Ilość, termin, dodatkowe wymagania..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" data-i18n="modal.submit">Wyślij zapytanie</button>
+        <p class="form-note" data-i18n="modal.note">Formularz demonstracyjny — wysyłka nie jest jeszcze podłączona.</p>
+      </form>
+    </div>
+
+    <div class="form-success" id="form-success">
+      <div class="icon">✓</div>
+      <h3 data-i18n="modal.successTitle">Dziękujemy!</h3>
+      <p data-i18n="modal.successBody">To wersja demonstracyjna — zapytanie nie zostało wysłane. Funkcja wysyłki zostanie dodana wkrótce.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const i18n = {
+    pl: {
+      "nav.products": "Produkty",
+      "nav.about": "O firmie",
+      "nav.contact": "Kontakt",
+      "hero.title": "Komponenty przemysłowe. Dostawa w całej Europie.",
+      "hero.sub": "Reon dostarcza czujniki, komponenty automatyki i sieci przemysłowe firmom w całej Europie — konkurencyjne ceny, sprawdzone marki, wycena na zapytanie.",
+      "hero.cta": "Zobacz produkty",
+      "products.title": "Asortyment",
+      "products.sub": "Wybrane kategorie z naszej oferty. Kliknij produkt, aby wysłać zapytanie ofertowe.",
+      "products.quoteBtn": "Zapytaj o ofertę",
+      "about.title": "O firmie",
+      "about.sub": "Kim jesteśmy i jak pracujemy",
+      "about.body": "<strong>Reon</strong> to hurtownia komponentów przemysłowych i elektronicznych działająca na rynku europejskim. Specjalizujemy się w czujnikach, modułach automatyki oraz sieciach przemysłowych, docierając do sprawdzonych dostawców i oferując konkurencyjne ceny bez utraty jakości. Model działania opiera się na wycenie indywidualnej — prześlij zapytanie o interesujący Cię produkt, a przygotujemy dla Ciebie ofertę.",
+      "contact.title": "Kontakt",
+      "contact.sub": "Masz pytanie ogólne? Napisz do nas bezpośrednio, albo wybierz produkt powyżej, aby zapytać o konkretną ofertę.",
+      "contact.emailLabel": "E-mail:",
+      "contact.regionLabel": "Obszar działania:",
+      "contact.region": "Europa",
+      "footer.text": "© 2026 Reon. Wszystkie prawa zastrzeżone.",
+      "modal.title": "Zapytanie ofertowe",
+      "modal.name": "Imię i nazwisko",
+      "modal.company": "Firma",
+      "modal.email": "E-mail",
+      "modal.phone": "Telefon",
+      "modal.message": "Wiadomość",
+      "modal.messagePlaceholder": "Ilość, termin, dodatkowe wymagania...",
+      "modal.submit": "Wyślij zapytanie",
+      "modal.note": "Formularz demonstracyjny — wysyłka nie jest jeszcze podłączona.",
+      "modal.successTitle": "Dziękujemy!",
+      "modal.successBody": "To wersja demonstracyjna — zapytanie nie zostało wysłane. Funkcja wysyłki zostanie dodana wkrótce."
+    },
+    en: {
+      "nav.products": "Products",
+      "nav.about": "About",
+      "nav.contact": "Contact",
+      "hero.title": "Industrial components. Delivered across Europe.",
+      "hero.sub": "Reon supplies sensors, automation components and industrial networking hardware to companies across Europe — competitive pricing, trusted brands, quote on request.",
+      "hero.cta": "View products",
+      "products.title": "Product range",
+      "products.sub": "Selected categories from our catalog. Click a product to request a quote.",
+      "products.quoteBtn": "Request a quote",
+      "about.title": "About us",
+      "about.sub": "Who we are and how we work",
+      "about.body": "<strong>Reon</strong> is an industrial and electronic components wholesaler operating across the European market. We specialize in sensors, automation modules and industrial networking hardware, sourcing from trusted suppliers to offer competitive pricing without compromising on quality. Our model is quote-based — send us an inquiry about the product you need, and we'll prepare an offer for you.",
+      "contact.title": "Contact",
+      "contact.sub": "General question? Reach out directly, or pick a product above to ask about a specific offer.",
+      "contact.emailLabel": "Email:",
+      "contact.regionLabel": "Coverage area:",
+      "contact.region": "Europe",
+      "footer.text": "© 2026 Reon. All rights reserved.",
+      "modal.title": "Quote request",
+      "modal.name": "Full name",
+      "modal.company": "Company",
+      "modal.email": "Email",
+      "modal.phone": "Phone",
+      "modal.message": "Message",
+      "modal.messagePlaceholder": "Quantity, deadline, extra requirements...",
+      "modal.submit": "Send request",
+      "modal.note": "Demo form — submission is not wired up yet.",
+      "modal.successTitle": "Thank you!",
+      "modal.successBody": "This is a demo build — your request was not actually sent. Submission will be enabled soon."
+    }
+  };
+
+  const products = [
+    {
+      icon: "⚙",
+      category: { pl: "Czujniki", en: "Sensors" },
+      name: { pl: "Telemecanique Sensors XS1 — Czujnik indukcyjny", en: "Telemecanique Sensors XS1 — Inductive Proximity Sensor" },
+      desc: {
+        pl: "Kompaktowy czujnik indukcyjny do zastosowań przemysłowych, obudowa M12, zasięg 2–8 mm.",
+        en: "Compact inductive proximity sensor for industrial use, M12 housing, 2–8 mm sensing range."
+      }
+    },
+    {
+      icon: "👁",
+      category: { pl: "Czujniki", en: "Sensors" },
+      name: { pl: "Telemecanique Sensors XUB — Czujnik fotoelektryczny", en: "Telemecanique Sensors XUB — Photoelectric Sensor" },
+      desc: {
+        pl: "Czujnik fotoelektryczny miniaturowy, tryb refleksyjny i barierowy, wyjście PNP/NPN.",
+        en: "Miniature photoelectric sensor, retro-reflective and through-beam modes, PNP/NPN output."
+      }
+    },
+    {
+      icon: "🖥",
+      category: { pl: "Automatyka", en: "Automation" },
+      name: { pl: "Modicon M221 — Moduł sterownika PLC", en: "Modicon M221 — PLC Controller Module" },
+      desc: {
+        pl: "Kompaktowy sterownik logiczny do małych i średnich aplikacji automatyki przemysłowej.",
+        en: "Compact logic controller for small and medium industrial automation applications."
+      }
+    },
+    {
+      icon: "🔌",
+      category: { pl: "Automatyka", en: "Automation" },
+      name: { pl: "SIMATIC S7-1200 — Moduł CPU", en: "SIMATIC S7-1200 — CPU Module" },
+      desc: {
+        pl: "Jednostka centralna do systemów sterowania, wbudowane wejścia/wyjścia cyfrowe i analogowe.",
+        en: "Central processing unit for control systems, built-in digital and analog I/O."
+      }
+    },
+    {
+      icon: "🛰",
+      category: { pl: "Sieci przemysłowe", en: "Industrial Networking" },
+      name: { pl: "PB-Q-One — Repeater Profibus", en: "PB-Q-One — Profibus Repeater" },
+      desc: {
+        pl: "Repeater segmentowy dla sieci Profibus, poprawia zasięg i stabilność transmisji.",
+        en: "Segment repeater for Profibus networks, extends range and improves transmission stability."
+      }
+    },
+    {
+      icon: "🌐",
+      category: { pl: "Sieci przemysłowe", en: "Industrial Networking" },
+      name: { pl: "Switch przemysłowy PROFINET", en: "PROFINET Industrial Switch" },
+      desc: {
+        pl: "Zarządzalny switch przemysłowy do sieci PROFINET, obudowa DIN-rail.",
+        en: "Managed industrial switch for PROFINET networks, DIN-rail mountable."
+      }
+    }
+  ];
+
+  let currentLang = "pl";
+
+  function renderProducts() {
+    const grid = document.getElementById("product-grid");
+    grid.innerHTML = "";
+    products.forEach((p, idx) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.onclick = () => openModal(p);
+      card.innerHTML = `
+        <div class="card-icon">${p.icon}</div>
+        <div class="card-category">${p.category[currentLang]}</div>
+        <p class="card-name">${p.name[currentLang]}</p>
+        <p class="card-desc">${p.desc[currentLang]}</p>
+        <button type="button" class="card-btn">${i18n[currentLang]["products.quoteBtn"]}</button>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.getElementById("lang-pl").classList.toggle("active", lang === "pl");
+    document.getElementById("lang-en").classList.toggle("active", lang === "en");
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      if (i18n[lang][key] !== undefined) el.setAttribute("placeholder", i18n[lang][key]);
+    });
+    renderProducts();
+  }
+
+  function openModal(product) {
+    document.getElementById("modal-product-name").textContent = product.name[currentLang];
+    document.getElementById("modal-form-wrap").style.display = "block";
+    document.getElementById("form-success").classList.remove("show");
+    document.getElementById("inquiry-form").reset();
+    document.getElementById("modal-overlay").classList.add("open");
+  }
+
+  function closeModal() {
+    document.getElementById("modal-overlay").classList.remove("open");
+  }
+
+  function submitInquiry(evt) {
+    evt.preventDefault();
+    document.getElementById("modal-form-wrap").style.display = "none";
+    document.getElementById("form-success").classList.add("show");
+    return false;
+  }
+
+  document.getElementById("modal-overlay").addEventListener("click", (e) => {
+    if (e.target.id === "modal-overlay") closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  renderProducts();
+</script>
+
+</body>
+</html>
