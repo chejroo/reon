@@ -4,62 +4,84 @@
 
 Source notes: [notes.md](notes.md).
 
-Reon is a planned B2B electronics/industrial-components wholesale business. Core idea: source parts (e.g. Telemecanique Sensors and similar industrial automation components) at a discount from Italian suppliers and resell across Europe at a margin. Reference sites for tone/structure: [famaga.com](https://famaga.com/) (international industrial distributor, EN) and [cptrade.pl](https://cptrade.pl/) (Polish industrial distributor, quote-request product pages like [cptrade.pl/produkty/a-corporationgenie](https://cptrade.pl/produkty/a-corporationgenie/)).
+Reon is a planned B2B industrial-components wholesale business. The commercial idea is to source selected automation and sensing brands competitively from foreign partners, including Italian suppliers, and resell across Europe with margin. The first public artifact is not a full storefront. It is a lightweight credibility and inquiry surface that presents selected manufacturers and encourages quote requests.
 
-Later-stage ideas from notes (not in scope for this phase): wholesaler API integration (RS Online, Digikey, cptrade, automa.net) vs. scraping if APIs are too expensive; price/availability comparator; full automation of quote generation; SAP-style automated offers.
+Reference direction:
+- FAMAGA for the manufacturer-led catalog framing and alphabetical browsing.
+- CP Trade for the Polish B2B tone and quote-request behavior instead of online checkout.
 
-## 2. Goal (this phase)
+Deferred business ideas from the notes remain outside this phase: supplier APIs, scraping as fallback, automated offers, price and availability comparison, and deep catalog automation.
 
-Ship a single static page that presents Reon as a company and lists sample products. Clicking a product opens a contact/inquiry form (like cptrade.pl's per-product quote request) instead of a cart/checkout — this is a B2B inquiry model, not e-commerce.
+## 2. Goal (phase 1)
+
+Ship a single static page that positions Reon as a Europe-focused industrial sourcing partner and presents a lightweight manufacturer catalog. Clicking any manufacturer entry opens a quote-request form. The page should feel like the front door to a B2B wholesaler, not an ecommerce store.
 
 ## 3. Scope
 
-**In scope:**
-- Single self-contained `index.html` (inline CSS + JS, no build step, no external asset requests) deployable as-is to GitHub Pages.
-- Company intro / hero section (who Reon is, what it does).
-- Product catalog grid using placeholder/sample products representative of the target assortment (industrial sensors, PLC/automation components, industrial networking).
-- Click on a product → modal with a contact/inquiry form (name, email, phone, company, message, product name pre-filled).
-- Bilingual content: Polish and English, switchable via a toggle in the UI.
-- Responsive layout (desktop + mobile).
+### In scope
 
-**Out of scope for this phase (explicitly deferred):**
-- Working form submission / backend (form is UI-only for now; no email service or endpoint wired up).
-- Real product data, pricing, or stock levels.
-- Wholesaler API or scraper integration.
-- Price/availability comparator.
-- Cart, checkout, accounts, payments.
-- CMS or multi-page routing (everything lives in one HTML file).
+- One self-contained [index.html](index.html) with inline CSS and JS, deployable directly to GitHub Pages.
+- Hero and positioning copy explaining Reon's B2B sourcing model.
+- Manufacturer-led catalog inspired by FAMAGA, with alphabetical grouping and lightweight filtering/search.
+- Sample manufacturer entries with category, short summary, and example product lines.
+- Clickable catalog entries that open a shared inquiry modal with the selected manufacturer context.
+- Polish and English content with a UI toggle.
+- Responsive behavior for desktop and mobile.
+
+### Out of scope
+
+- Real form submission or backend handling.
+- Product detail subpages.
+- Real-time pricing, stock, or lead time.
+- API or scraper integration.
+- Cart, checkout, user accounts, or payments.
+- CMS, routing, or a multi-page site structure.
 
 ## 4. Users
 
-- **End customers** (procurement/engineers at companies across Europe) browsing available product categories and requesting a quote.
-- **Reon staff** (informal, phase 1) — no admin UI; inquiries are only captured client-side for now.
+- Procurement and engineering contacts at companies looking for industrial automation and electronics components.
+- Early-stage Reon stakeholders validating the business presentation and inquiry flow.
 
-## 5. Content structure
+## 5. Information architecture
 
-1. Header — logo/name (Reon), nav (Products, About, Contact), language toggle (PL/EN).
-2. Hero — short value proposition (European industrial component wholesaler/reseller).
-3. Product grid — cards (name, category tag, short description, "Request a quote" button). Sample categories: sensors (Telemecanique-style), PLC & automation modules, industrial networking (Profibus/fieldbus).
-4. Product click → modal overlay with inquiry form, pre-filled with the clicked product's name.
-5. About/footer — short company blurb, contact email placeholder, copyright.
+1. Sticky header with brand, section navigation, and PL/EN toggle.
+2. Hero section that explains Reon's sourcing-based B2B model and the lightweight launch scope.
+3. Manufacturer catalog with search and alphabetical navigation.
+4. Shared quote-request modal opened from any catalog entry.
+5. Short "how it works" section describing inquiry flow.
+6. About and contact sections reinforcing trust and business scope.
+7. Minimal footer confirming the demo/static-launch nature of the page.
 
-## 6. Tech approach
+## 6. Product/content model
 
-- Plain HTML/CSS/JS in one file — no framework, no bundler, no external CDN dependencies (keeps it portable and CSP/offline safe).
-- Product data as a small inline JS array so adding real products later is a data-only edit.
-- Language toggle implemented via `data-lang` attributes + JS show/hide (no page reload).
-- Hosting: GitHub Pages, repo [github.com/chejroo/reon](https://github.com/chejroo/reon.git), serving `index.html` from the repo root (or `/docs`, TBD when Pages is enabled).
+Each catalog entry should stay intentionally lightweight in phase 1:
+- Manufacturer name
+- Broad category
+- Short positioning summary
+- Example product lines or component families
+- Optional business tag such as sourcing priority or application area
 
-## 7. Future phases (not now)
+This model is enough to support fast scanning and contextual inquiries without pretending to have full supplier data.
 
-- Wire the contact form to a real submission target (email service or backend).
-- Replace placeholder catalog with real product data, sourced via API or scraper per the API-cost research noted in `notes.md`.
-- Availability/price comparator across suppliers.
-- Possible move to a templated/multi-page or backend-driven site once catalog size grows.
+## 7. Technical approach
 
-## 8. Success criteria (this phase)
+- Plain HTML, CSS, and JavaScript in a single file.
+- Inline data array for manufacturer entries so the catalog can be expanded by editing data rather than markup.
+- Bilingual strings managed through a simple in-page translation object.
+- Modal form remains UI-only in this phase.
+- Deployment target: GitHub Pages using the repo-root [index.html](index.html).
 
-- Page loads as a single file with no external dependencies.
-- Product grid and per-product inquiry modal work on desktop and mobile.
-- Content is complete and correct in both Polish and English.
-- Deployed and reachable via GitHub Pages.
+## 8. Success criteria
+
+- The page works as a standalone static file with no external runtime dependencies.
+- Users can browse the manufacturer catalog, filter it, and open the inquiry form from any entry.
+- PL and EN variants both work correctly.
+- The visual direction clearly communicates B2B sourcing and quote-based sales rather than ecommerce.
+- The page is ready for direct GitHub Pages deployment.
+
+## 9. Next phases
+
+- Connect the inquiry form to a real submission mechanism.
+- Expand the catalog with real manufacturers and reference ranges.
+- Introduce richer filtering, possibly combining manufacturer and product-category navigation.
+- Evaluate supplier integrations or scraping once the business model is validated.
